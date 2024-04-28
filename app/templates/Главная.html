@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="ru"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="subscribe">
+    <meta name="description" content="">
+    <title>Главная</title>
+    <link rel="stylesheet" href="static/nicepage.css" media="screen">
+<link rel="stylesheet" href="static/Главная.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery-1.9.1.min.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 6.4.0, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"url": "/",
+		"logo": "images/logo.png"
+}</script>
+    <style>
+        .messages {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            list-style: none;
+        }
+
+        .messages li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Главная">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="/">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="ru">
+  <header class="u-clearfix u-header u-header" id="sec-c65a" style="background-color: #1273C4;">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <a href=# class="u-image u-logo u-image-1">
+          <img src="static/images/logo.png" class="u-logo-image u-logo-image-1">
+        </a>
+      </div>
+  </header>
+    <section class="u-clearfix u-section-1" id="sec-84ff">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-form u-form-1">
+            {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+          <form method="POST" action="/" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"  name="form-1" style="padding: 10px;">
+              {{ form.csrf_token }}
+            <div class="u-form-group u-form-name">
+              <label for="name-6cb2" class="u-label">Логин</label>{{ form.username }}
+            </div>
+            <div class="u-form-group">
+              <label for="email-6cb2" class="u-label">Пароль</label>{{ form.password }}
+            </div>
+            <div class="u-align-center u-form-group u-form-submit">
+              {{ form.submit }}
+            </div>
+            <div class="u-form-send-message u-form-send-success"> Спасибо! Ваше сообщение отправлено. </div>
+            <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и попробуйте еще раз. </div>
+            <input type="hidden" value="" name="recaptchaResponse">
+            <input type="hidden" name="formServices" value="cca6742f-298b-df6e-5be0-9de9e80e90b5">
+          </form>
+        </div>
+      </div>
+  
+</body></html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход</title>
+    <style>
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .messages {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            list-style: none;
+        }
+
+        .messages li {
+            margin-bottom: 5px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: normal;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            display: block;
+            width: 100%;
+            padding: 10px 12px;
+            background-image: none;
+            background-clip: padding-box;
+            border-width: 0;
+            border-radius: 3px;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            background-color: transparent;
+            color: inherit;
+            height: auto;
+            border-radius: 0;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Вход</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <form method="POST" action="/">
+        {{ form.csrf_token }}
+        <div>
+            <label for="username">Username:</label> {{ form.username }}
+        </div>
+        <div>
+            <label for="password">Password:</label> {{ form.password }}
+        </div>
+        <div>
+            <input type="submit" value="Submit" style="padding: 10px 20px; background-color: #008CBA; border: none; color: white; font-size: 16px; cursor: pointer; border-radius: 4px;">
+        </div>
+    </form>
+</body>
+</html>
