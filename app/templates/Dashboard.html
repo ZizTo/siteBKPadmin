@@ -54,6 +54,7 @@
             <colgroup>
               <col width="14px">
               <col width="20px">
+              <col width="20px">
               <col width="110px">
               <col width="200px">
               <col width="20px">
@@ -71,6 +72,7 @@
               <tr style="height: 21px;">
                 <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;"></th>
                 <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">№</th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">V</th>
                 <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">Телефон</th>
                 <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">ФИО</th>
                 <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">Раб.дни</th>
@@ -100,6 +102,7 @@
                   </form>
                 </td>
                 <td class="u-border-1 u-border-grey-30 u-first-column u-grey-50 u-table-cell u-table-cell-5 paddingt" style = "text-align: center; padding:0px;">{{ dr }}</td>
+                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-50 u-table-cell u-table-cell-5 paddingt" style = "text-align: center; padding:0px;"><a href="viber://chat?number={{ drivers[dr]['Tel'] }}">📞</a></td>
                 <td class="u-border-1 u-border-grey-30 u-first-column">
                   <form method="post", action="new_tel">
                     <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
@@ -129,47 +132,47 @@
                     {% if drivers[dr]["state"][day]%}
                     {% if drivers[dr]["state"][day] == 1%}
                     {{ form.choice1(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #ffa6a7;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 11%}
                     {{ form.choice1(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #ffa6a7;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 2%}
                     {{ form.choice2(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #a6b8ff;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 12%}
                     {{ form.choice2(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #a6b8ff;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 3%}
                     {{ form.choice3(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #a2f1f2;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 13%}
                     {{ form.choice3(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #a2f1f2;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 4%}
                     {{ form.choice4(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #e0e398;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 14%}
                     {{ form.choice4(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #e0e398;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 5%}
                     {{ form.choice5(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #ffedc7;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 15%}
                     {{ form.choice5(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #ffedc7;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                     {% else %}
                     {{ form.choice0(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #bfbfbf;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
                     {% endif %}
                   </form>
                 </td>
@@ -186,7 +189,7 @@
             {% endfor %}
             </tbody>
             <tr>
-              <td colspan="4" class="u-border-1 u-border-grey-30 u-table-cell u-grey-50 u-table-cell u-table-cell-5" style = "text-align: center;">Всего машин в рейсах/зп:</td>
+              <td colspan="5" class="u-border-1 u-border-grey-30 u-table-cell u-grey-50 u-table-cell u-table-cell-5" style = "text-align: center;">Всего машин в рейсах/зп:</td>
               <td class="u-border-1 u-border-grey-30 u-table-cell" style = "text-align: center;">{{ allkolrace }}</td>
               {% for inrace in inraceDay %}
               <td class="u-border-1 u-border-grey-30 u-table-cell" style = "text-align: center;">{{ inrace }}</td>
@@ -199,7 +202,7 @@
                 <form action="addUser", method="POST">
                     <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
                     <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
-                    <button type="submit"  class="u-btn" style = "text-align: center;">Добавить пользователя</button>
+                    <button type="submit"  class="u-btn" style = "text-align: center;">Добавить сотрудника</button>
                 </form>
               </td>
               <form action="newCosts", method="post">

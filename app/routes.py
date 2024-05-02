@@ -115,15 +115,15 @@ def dashboardInit(month, year):
             try:
                 if drivers[str(i)]['state'][str(date)] != 0:
                     kolWorkDays += 1
-                    if drivers[str(i)]['state'][str(date)] == 1:
+                    if drivers[str(i)]['state'][str(date)] == 1 or drivers[str(i)]['state'][str(date)] == 11:
                         kolRBDays += 1
-                    if drivers[str(i)]['state'][str(date)] == 2:
+                    if drivers[str(i)]['state'][str(date)] == 2 or drivers[str(i)]['state'][str(date)] == 12:
                         kolRFDays += 1
-                    if drivers[str(i)]['state'][str(date)] == 3:
+                    if drivers[str(i)]['state'][str(date)] == 3 or drivers[str(i)]['state'][str(date)] == 13:
                         kolREFDays += 1
-                    if drivers[str(i)]['state'][str(date)] == 4:
+                    if drivers[str(i)]['state'][str(date)] == 4 or drivers[str(i)]['state'][str(date)] == 14:
                         kolADRDays += 1
-                    if drivers[str(i)]['state'][str(date)] == 5:
+                    if drivers[str(i)]['state'][str(date)] == 5 or drivers[str(i)]['state'][str(date)] == 15:
                         kolHalfDays += 1
             except:
                 pass
@@ -172,7 +172,7 @@ def dashboardInit(month, year):
     inraceDay.append(allMoney)
 
 
-    return render_template('dashboard.html', drivers=drivers, dateweek=dateweek, inraceDay=inraceDay,
+    return render_template('Dashboard.html', drivers=drivers, dateweek=dateweek, inraceDay=inraceDay,
                            form=ChoiceForm(choice0=0, choice1=1, choice3=3, choice4=4, choice2=2, choice5=5,
                                            monthchoice=month, yearch=year),
                            workDays=workDays, dateweekname=dateweekname, fullInfoDays=fullInfoDays,
@@ -297,6 +297,7 @@ def delUser():
     except:
         pass
 
+    changes[str(driver[str(id)]['allid'])] = 'del'
     for i in range(id, driver['kol']):
         try:
             changes[str(driver[str(i+1)]['allid'])] -= 1
