@@ -39,6 +39,7 @@
         <p></p>
         <table class="u-table-entity u-table-entity-1">
           <form action="anotherDate", method="post">
+            <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
             <tr>
               <td>
                 {{ form.monthchoice(**{"onchange":"this.form.submit()", "style":"height: 40px; width: 100%; font-size: 22px;"}) }}
@@ -71,7 +72,12 @@
             <thead class="u-black u-table-header u-table-header-1">
               <tr style="height: 21px;">
                 <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;"></th>
-                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">№</th>
+                <form action="sortByNomber", method="post">
+                  <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
+                  <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
+                  <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
+                  <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">№</th>
+                </form>
                 <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">V</th>
                 <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">Телефон</th>
                 <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">ФИО</th>
@@ -95,6 +101,7 @@
                   <form action="delUser", method="post">
                     <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
                     <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
+                    <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
                     <input type="hidden" name="driverId" value="{{ dr }}">
                     <button type="submit" style = "height: 30px">
                       ❌
@@ -107,6 +114,7 @@
                   <form method="post", action="new_tel">
                     <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
                     <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
+                    <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
                     {{ form.telInp(**{"value":drivers[dr]['Tel'],"id":dr, "style":"height: 30px; width: 100%;", "onchange":"this.form.submit()" }) }}
                     <input type="hidden" name="driverId" value="{{ dr }}">
                     <button type="submit" style="display: none;"></button>
@@ -116,6 +124,7 @@
                   <form method="post", action="new_name">
                     <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
                     <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
+                    <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
                     {{ form.nameInp(**{"value":drivers[dr]['Name'],"id":dr, "style":"height: 30px; width: 100%;", "onchange":"this.form.submit()" }) }}
                     <input type="hidden" name="driverId" value="{{ dr }}">
                     <button type="submit" style="display: none;"></button>
@@ -129,6 +138,7 @@
                     <input type="hidden" name="driverDayId" value="{{ dr ~ '-' ~ day }}">
                     <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
                     <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
+                    <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
                     {% if drivers[dr]["state"][day]%}
                     {% if drivers[dr]["state"][day] == 1%}
                     {{ form.choice1(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #ffa6a7;
@@ -202,12 +212,14 @@
                 <form action="addUser", method="POST">
                     <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
                     <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
+                    <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
                     <button type="submit"  class="u-btn" style = "text-align: center;">Добавить сотрудника</button>
                 </form>
               </td>
               <form action="newCosts", method="post">
                 <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
                 <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
+                <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
                 <td class="paddingt" style="width:2%">РБ: </td>
                 <td class="paddingt" style="width:10%">
                   {{ form.RBstr(**{"value":costs['RB'], "style":"height: 40px; width:100%", "onchange":"this.form.submit()" }) }}

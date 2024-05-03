@@ -90,7 +90,7 @@ class ChoiceForm(FlaskForm):
     print(choicesyear)
     yearch = SelectField(name='yearch', choices=choicesyear)
 
-def dashboardInit(month, year):
+def dashboardInit(month, year, sort):
     drivers = db.reference('/Driver').get()
     Costs = db.reference('/Cost').get()
 
@@ -176,7 +176,8 @@ def dashboardInit(month, year):
                            form=ChoiceForm(choice0=0, choice1=1, choice3=3, choice4=4, choice2=2, choice5=5,
                                            monthchoice=month, yearch=year),
                            workDays=workDays, dateweekname=dateweekname, fullInfoDays=fullInfoDays,
-                           monthchoosed=month, yearchoosed=year, costs=Costs, allkolrace=allkolrace)
+                           monthchoosed=month, yearchoosed=year, costs=Costs, allkolrace=allkolrace,
+                           sortchoosed = sort)
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
@@ -191,8 +192,12 @@ def dashboard():
         else:
             month = f'{datetime.now().month}'
         year = str(datetime.now().year)
+    try:
+        sort = request.args['sort']
+    except:
+        sort = 1
 
-    return dashboardInit(month, year)
+    return dashboardInit(month, year, sort)
 
 @app.route('/update_choice', methods=['POST'])
 def update_choice():
@@ -213,9 +218,17 @@ def update_choice():
 
     monthch = str(request.form['monthchoosed'])
     yearch = str(request.form['yearchoosed'])
+    sortch = request.form['sortchoosed']
     if int(monthch) == datetime.now().month and int(yearch) == datetime.now().year:
-        return redirect(url_for('dashboard'))
-    return redirect(url_for('dashboard', month=monthch, year=yearch))
+        if sortch == '1':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('dashboard', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('dashboard', month=monthch, year=yearch))
+        else:
+            return redirect(url_for('dashboard', month=monthch, year=yearch, sort=sortch))
 
 @app.route('/new_name', methods=['POST'])
 def new_name():
@@ -226,9 +239,17 @@ def new_name():
 
     monthch = str(request.form['monthchoosed'])
     yearch = str(request.form['yearchoosed'])
+    sortch = request.form['sortchoosed']
     if int(monthch) == datetime.now().month and int(yearch) == datetime.now().year:
-        return redirect(url_for('dashboard'))
-    return redirect(url_for('dashboard', month=monthch, year=yearch))
+        if sortch == '1':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('dashboard', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('dashboard', month=monthch, year=yearch))
+        else:
+            return redirect(url_for('dashboard', month=monthch, year=yearch, sort=sortch))
 
 @app.route('/new_tel', methods=['POST'])
 def new_tel():
@@ -239,9 +260,17 @@ def new_tel():
 
     monthch = str(request.form['monthchoosed'])
     yearch = str(request.form['yearchoosed'])
+    sortch = request.form['sortchoosed']
     if int(monthch) == datetime.now().month and int(yearch) == datetime.now().year:
-        return redirect(url_for('dashboard'))
-    return redirect(url_for('dashboard', month=monthch, year=yearch))
+        if sortch == '1':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('dashboard', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('dashboard', month=monthch, year=yearch))
+        else:
+            return redirect(url_for('dashboard', month=monthch, year=yearch, sort=sortch))
 
 @app.route('/newCosts', methods=['POST'])
 def newCosts():
@@ -256,9 +285,17 @@ def newCosts():
 
     monthch = str(request.form['monthchoosed'])
     yearch = str(request.form['yearchoosed'])
+    sortch = request.form['sortchoosed']
     if int(monthch) == datetime.now().month and int(yearch) == datetime.now().year:
-        return redirect(url_for('dashboard'))
-    return redirect(url_for('dashboard', month=monthch, year=yearch))
+        if sortch == '1':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('dashboard', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('dashboard', month=monthch, year=yearch))
+        else:
+            return redirect(url_for('dashboard', month=monthch, year=yearch, sort=sortch))
 
 @app.route('/addUser', methods=['POST'])
 def addUser():
@@ -276,12 +313,19 @@ def addUser():
     db.reference(f'/Driver/{kol}/allid').set(kolallid)
     db.reference(f'/Driver/{kol}/OnJobFrom').set(datetoday)
 
-
     monthch = str(request.form['monthchoosed'])
     yearch = str(request.form['yearchoosed'])
+    sortch = request.form['sortchoosed']
     if int(monthch) == datetime.now().month and int(yearch) == datetime.now().year:
-        return redirect(url_for('dashboard'))
-    return redirect(url_for('dashboard', month=monthch, year=yearch))
+        if sortch == '1':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('dashboard', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('dashboard', month=monthch, year=yearch))
+        else:
+            return redirect(url_for('dashboard', month=monthch, year=yearch, sort=sortch))
 
 @app.route('/delUser', methods=['POST'])
 def delUser():
@@ -317,20 +361,81 @@ def delUser():
 
     monthch = str(request.form['monthchoosed'])
     yearch = str(request.form['yearchoosed'])
+    sortch = request.form['sortchoosed']
     if int(monthch) == datetime.now().month and int(yearch) == datetime.now().year:
-        return redirect(url_for('dashboard'))
-    return redirect(url_for('dashboard', month=monthch, year=yearch))
+        if sortch == '1':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('dashboard', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('dashboard', month=monthch, year=yearch))
+        else:
+            return redirect(url_for('dashboard', month=monthch, year=yearch, sort=sortch))
 
 @app.route('/anotherDate', methods=['GET', 'POST'])
 def anotherDate():
     month = request.form['monthch']
     year = request.form['yearch']
 
+    sortch = request.form['sortchoosed']
     if int(month) == datetime.now().month and int(year) == datetime.now().year:
-        return redirect(url_for('dashboard'))
-    return redirect(url_for('dashboard', month=month, year=year))
+        if sortch == '1':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('dashboard', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('dashboard', month=month, year=year))
+        else:
+            return redirect(url_for('dashboard', month=month, year=year, sort=sortch))
 
 
+@app.route('/sortByNumber', methods=['GET', 'POST'])
+def sortByNumber():
+    monthch = str(request.form['monthchoosed'])
+    yearch = str(request.form['yearchoosed'])
+    sortch = request.form['sortchoosed']
+
+    if sortch == '1':
+        sortch = '2'
+    else:
+        sortch = '1'
+
+
+    if int(monthch) == datetime.now().month and int(yearch) == datetime.now().year:
+        if sortch == '1':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('dashboard', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('dashboard', month=monthch, year=yearch))
+        else:
+            return redirect(url_for('dashboard', month=monthch, year=yearch, sort=sortch))
+
+@app.route('/sortByName', methods=['GET', 'POST'])
+def sortByName():
+    monthch = str(request.form['monthchoosed'])
+    yearch = str(request.form['yearchoosed'])
+    sortch = request.form['sortchoosed']
+
+    if sortch == '3':
+        sortch = '4'
+    else:
+        sortch = '3'
+
+
+    if int(monthch) == datetime.now().month and int(yearch) == datetime.now().year:
+        if sortch == '1':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('dashboard', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('dashboard', month=monthch, year=yearch))
+        else:
+            return redirect(url_for('dashboard', month=monthch, year=yearch, sort=sortch))
 
 
 @app.route('/logout')
