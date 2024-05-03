@@ -22,11 +22,17 @@
 		"url": "/",
 		"logo": "images/default-logo.png"
 }</script>
+  <script type="text/javascript">
+    setTimeout(function() {
+        location.reload();
+    }, 300000);
+  </script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Главная">
     <meta property="og:type" content="website">
     <link rel="canonical" href="/">
-  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <meta data-intl-tel-input-cdn-path="intlTelInput/">
+</head>
 
   <body data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="ru"><header class="u-clearfix u-header u-header" id="sec-c65a" style="background-color: #1273C4;"><div class="u-clearfix u-sheet u-sheet-1">
         <a href="#" class="u-image u-logo u-image-1">
@@ -35,8 +41,7 @@
       </div></header>
     <section class="u-align-center u-clearfix u-section-1" id="sec-962d">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h3 class="u-text u-text-default u-text-1">Добро пожаловать, {{ current_user.username }}!</h3>
-        <p></p>
+        <h3 class="u-text  u-text-default u-text-1" style="margin: 20px">Добро пожаловать, {{ current_user.username }}!</h3>
         <table class="u-table-entity u-table-entity-1">
           <form action="anotherDate", method="post">
             <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
@@ -103,13 +108,13 @@
                     <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
                     <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
                     <input type="hidden" name="driverId" value="{{ dr }}">
-                    <button type="submit" style = "height: 30px">
+                    <button type="submit" style = "height: 30px; font-size: 14px">
                       ❌
                     </button>
                   </form>
                 </td>
                 <td class="u-border-1 u-border-grey-30 u-first-column u-grey-50 u-table-cell u-table-cell-5 paddingt" style = "text-align: center; padding:0px;">{{ dr }}</td>
-                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-50 u-table-cell u-table-cell-5 paddingt" style = "text-align: center; padding:0px;"><a href="viber://chat?number={{ drivers[dr]['Tel'] }}">📞</a></td>
+                <td class="u-border-1 u-border-grey-30 u-first-column" style = "text-align: center; padding:0px;"><a href="viber://chat?number={{ drivers[dr]['Tel'] }}">📞</a></td>
                 <td class="u-border-1 u-border-grey-30 u-first-column">
                   <form method="post", action="new_tel">
                     <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
@@ -193,7 +198,7 @@
                 <td class="u-border-1 u-border-grey-30 u-table-cell paddingt" style = "text-align: center; padding:0px; background: #a2f1f2;">{{fullInfoDays[dr]["REF"]}}</td>
                 <td class="u-border-1 u-border-grey-30 u-table-cell paddingt" style = "text-align: center; padding:0px; background: #e0e398">{{fullInfoDays[dr]["ADR"]}}</td>
                 <td class="u-border-1 u-border-grey-30 u-table-cell paddingt" style = "text-align: center; padding:0px; background: #ffedc7">{{fullInfoDays[dr]["Half"]}}</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell paddingt" style = "text-align: center; padding:0px; background: #ffedc7">{{fullInfoDays[dr]["Money"]}}</td>
+                <td class="u-border-1 u-border-grey-30 u-table-cell paddingt" style = "text-align: center; padding:0px; background: #ceffc7">{{fullInfoDays[dr]["Money"]}}</td>
               </tr>
             {% endif %}
             {% endfor %}

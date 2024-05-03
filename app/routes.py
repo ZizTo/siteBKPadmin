@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 import firebase_admin
-from firebase_admin import db, credentials
+from firebase_admin import db, credentials, firestore
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
 from app import app
 from datetime import datetime, timedelta
@@ -13,6 +13,7 @@ from dateutil.relativedelta import relativedelta
 
 cred = credentials.Certificate("transport-aa61a-firebase-adminsdk-o5xvm-06d1ad449e.json")
 firebase_admin.initialize_app(cred, {"databaseURL": "https://transport-aa61a-default-rtdb.firebaseio.com/"})
+
 
 
 login_manager = LoginManager()
@@ -65,12 +66,12 @@ def login():
     return render_template('Главная.html', form=form)
 
 class ChoiceForm(FlaskForm):
-    choice0 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'РЕФ, ADR'), ('5', '0,5')])
-    choice1 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'РЕФ, ADR'), ('5', '0,5')])
-    choice2 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'РЕФ, ADR'), ('5', '0,5')])
-    choice3 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'РЕФ, ADR'), ('5', '0,5')])
-    choice4 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'РЕФ, ADR'), ('5', '0,5')])
-    choice5 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'РЕФ, ADR'), ('5', '0,5')])
+    choice0 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice1 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice2 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice4 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice5 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice3 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
 
     nameInp = StringField(name='nameInput')
     telInp = StringField(name='telInput')
@@ -443,3 +444,4 @@ def sortByName():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+

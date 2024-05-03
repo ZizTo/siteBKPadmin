@@ -42575,13 +42575,13 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-sheet-1 {
-  min-height: 76px;
+  min-height: 10px; /* 76 */
 }
 
 .u-header .u-image-1 {
-  width: 325px;
-  height: 40px;
-  margin: 22px auto 22px 0;
+  width: 162px;
+  height: 20px;
+  margin: 10px auto 10px 0;
 }
 
 .u-header .u-logo-image-1 {
