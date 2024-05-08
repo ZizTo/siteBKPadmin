@@ -43,7 +43,7 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h3 class="u-text  u-text-default u-text-1" style="margin: 20px">Добро пожаловать, {{ current_user.username }}!</h3>
         <table class="u-table-entity u-table-entity-1">
-          <form action="anotherDate", method="post">
+          <form action="anotherDateArch", method="post">
             <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
             <tr>
               <td>
@@ -58,7 +58,6 @@
         <div class="u-expanded-width u-table u-table-responsive u-table-1">
           <table class="u-table-entity u-table-entity-1">
             <colgroup>
-              <col width="14px">
               <col width="20px">
               <col width="20px">
               <col width="110px">
@@ -76,8 +75,7 @@
             </colgroup>
             <thead class="u-black u-table-header u-table-header-1">
               <tr style="height: 21px;">
-                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;"></th>
-                <form action="sortByNomber", method="post">
+                <form action="sortByNomberArch", method="post">
                   <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
                   <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
                   <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
@@ -102,38 +100,13 @@
             {% for dr in drivers %}
             {% if drivers[dr]['Name'] %}
               <tr style="height: 30px;">
-                <td class="u-border-1 u-border-grey-30 u-table-cell">
-                  <form action="delUser", method="post">
-                    <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
-                    <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
-                    <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
-                    <input type="hidden" name="driverId" value="{{ dr }}">
-                    <button type="submit" style = "height: 30px; font-size: 14px">
-                      ❌
-                    </button>
-                  </form>
-                </td>
                 <td class="u-border-1 u-border-grey-30 u-first-column u-grey-50 u-table-cell u-table-cell-5 paddingt" style = "text-align: center; padding:0px;">{{ dr }}</td>
                 <td class="u-border-1 u-border-grey-30 u-first-column" style = "text-align: center; padding:0px;"><a href="viber://chat?number={{ drivers[dr]['Tel'] }}">📞</a></td>
                 <td class="u-border-1 u-border-grey-30 u-first-column">
-                  <form method="post", action="new_tel">
-                    <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
-                    <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
-                    <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
-                    {{ form.telInp(**{"value":drivers[dr]['Tel'],"id":dr, "style":"height: 30px; width: 100%;", "onchange":"this.form.submit()" }) }}
-                    <input type="hidden" name="driverId" value="{{ dr }}">
-                    <button type="submit" style="display: none;"></button>
-                  </form>
+                  {{ drivers[dr]['Tel'] }}
                 </td>
                 <td class="u-border-1 u-border-grey-30 u-first-column ">
-                  <form method="post", action="new_name">
-                    <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
-                    <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
-                    <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
-                    {{ form.nameInp(**{"value":drivers[dr]['Name'],"id":dr, "style":"height: 30px; width: 100%;", "onchange":"this.form.submit()" }) }}
-                    <input type="hidden" name="driverId" value="{{ dr }}">
-                    <button type="submit" style="display: none;"></button>
-                  </form>
+                  {{ drivers[dr]['Name'] }}
                 </td>
                 <td class="u-border-1 u-border-grey-30 u-table-cell paddingt" style = "text-align: center; padding:0px;">{{ workDays[dr] }}</td>
                 {% for day in dateweek %}
@@ -147,47 +120,47 @@
                     {% if drivers[dr]["state"][day]%}
                     {% if drivers[dr]["state"][day] == 1%}
                     {{ form.choice1(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #ffa6a7;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 11%}
                     {{ form.choice1(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #ffa6a7;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 2%}
                     {{ form.choice2(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #a6b8ff;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 12%}
                     {{ form.choice2(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #a6b8ff;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 3%}
                     {{ form.choice3(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #a2f1f2;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 13%}
                     {{ form.choice3(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #a2f1f2;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 4%}
                     {{ form.choice4(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #e0e398;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 14%}
                     {{ form.choice4(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #e0e398;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 5%}
                     {{ form.choice5(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #ffedc7;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% if drivers[dr]["state"][day] == 15%}
                     {{ form.choice5(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #ffedc7;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                     {% else %}
                     {{ form.choice0(**{"class": "u-input u-input-rectangle", "id":dr ~ "-" ~ day, "onchange": "this.form.submit()", "style":"height: 30px; background: #bfbfbf;
-                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px;" }) }}
+                    -webkit-appearance: none; -moz-appearance: none; padding:2px; font-size: 14px; pointer-events:none;" }) }}
                     {% endif %}
                   </form>
                 </td>
@@ -204,52 +177,15 @@
             {% endfor %}
             </tbody>
             <tr>
-              <td colspan="5" class="u-border-1 u-border-grey-30 u-table-cell u-grey-50 u-table-cell u-table-cell-5" style = "text-align: center;">Всего машин в рейсах/зп:</td>
+              <td colspan="4" class="u-border-1 u-border-grey-30 u-table-cell u-grey-50 u-table-cell u-table-cell-5" style = "text-align: center;">Всего машин в рейсах/зп:</td>
               <td class="u-border-1 u-border-grey-30 u-table-cell" style = "text-align: center;">{{ allkolrace }}</td>
               {% for inrace in inraceDay %}
               <td class="u-border-1 u-border-grey-30 u-table-cell" style = "text-align: center;">{{ inrace }}</td>
               {% endfor %}
             </tr>
           </table>
-          <table class="u-table-entity u-table-entity-1">
-            <tr style="width:100%">
-              <td style="width:13%">
-                <form action="addUser", method="POST">
-                    <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
-                    <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
-                    <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
-                    <button type="submit"  class="u-btn" style = "text-align: center;">Добавить сотрудника</button>
-                </form>
-              </td>
-              <form action="newCosts", method="post">
-                <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
-                <input type="hidden" name="yearchoosed" value="{{ yearchoosed }}">
-                <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
-                <td class="paddingt" style="width:2%">РБ: </td>
-                <td class="paddingt" style="width:10%">
-                  {{ form.RBstr(**{"value":costs['RB'], "style":"height: 40px; width:100%", "onchange":"this.form.submit()" }) }}
-                </td>
-                <td class="paddingt" style="width:2%">РФ: </td>
-                <td class="paddingt" style="width:10%">
-                  {{ form.RFstr(**{"value":costs['RF'], "style":"height: 40px; width:100%", "onchange":"this.form.submit()" }) }}
-                </td>
-                <td class="paddingt" style="width:2%">REF: </td>
-                <td class="paddingt" style="width:10%">
-                  {{ form.REFstr(**{"value":costs['REF'], "style":"height: 40px; width:100%", "onchange":"this.form.submit()" }) }}
-                </td>
-                <td class="paddingt" style="width:2%">ADR: </td>
-                <td class="paddingt" style="width:10%">
-                  {{ form.ADRstr(**{"value":costs['ADR'], "style":"height: 40px; width:100%", "onchange":"this.form.submit()" }) }}
-                </td>
-                <td class="paddingt" style="width:2%">0,5: </td>
-                <td class="paddingt" style="width:10%">
-                  {{ form.Halfstr(**{"value":costs['Half'], "style":"height: 40px; width:100%", "onchange":"this.form.submit()" }) }}
-                </td>
-              </form>
-            </tr>
-          </table>
         </div>
-        <h6 class="u-text u-text-default u-text-1"><a href="{{ url_for('archive') }}" class="u-btn u-btn-submit u-button-style">Архив</a></h6>
+        <h6 class="u-text u-text-default u-text-1"><a href="{{ url_for('dashboard') }}" class="u-btn u-btn-submit u-button-style">Панель управления</a></h6>
         <p></p>
         <h6 class="u-text u-text-default u-text-1"><a href="{{ url_for('logout') }}" class="u-btn u-btn-submit u-button-style">Выйти из аккаунта</a></h6>
       </div>

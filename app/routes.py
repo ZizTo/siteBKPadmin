@@ -335,7 +335,7 @@ def delUser():
     archive = db.reference('/Archive').get()
     changes = db.reference('/Changes').get()
 
-    archive[str(archive['kol'])] = driver[str(id)]
+    archive[str(archive['kol'] + 1)] = driver[str(id)]
     archive['kol'] += 1
     try:
         del changes[str(driver[str(id)]['allid'])]
@@ -444,4 +444,132 @@ def sortByName():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+def archiveInit(month, year, sort):
+    drivers = db.reference('/Archive').get()
+    Costs = db.reference('/Cost').get()
+
+    dateweek = []
+    for i in range(0, calendar.monthrange(int(year), int(month))[1]):
+        dateweek.append(datetime(int(year), int(month), int(i+1)).strftime('%Y-%m-%d'))
+    dateweekname = []
+    for i in range(0, len(dateweek)):
+        dateweekname.append(str(int(f'{dateweek[i][8]}{dateweek[i][9]}')))
+
+    workDays = {}
+    fullInfoDays = {}
+
+    for i in range(1, len(drivers)):
+        kolWorkDays = 0
+        kolRBDays = 0
+        kolRFDays = 0
+        kolREFDays = 0
+        kolADRDays = 0
+        kolHalfDays = 0
+        for date in dateweek:
+            try:
+                if drivers[str(i)]['state'][str(date)] != 0:
+                    kolWorkDays += 1
+                    if drivers[str(i)]['state'][str(date)] == 1 or drivers[str(i)]['state'][str(date)] == 11:
+                        kolRBDays += 1
+                    if drivers[str(i)]['state'][str(date)] == 2 or drivers[str(i)]['state'][str(date)] == 12:
+                        kolRFDays += 1
+                    if drivers[str(i)]['state'][str(date)] == 3 or drivers[str(i)]['state'][str(date)] == 13:
+                        kolREFDays += 1
+                    if drivers[str(i)]['state'][str(date)] == 4 or drivers[str(i)]['state'][str(date)] == 14:
+                        kolADRDays += 1
+                    if drivers[str(i)]['state'][str(date)] == 5 or drivers[str(i)]['state'][str(date)] == 15:
+                        kolHalfDays += 1
+            except:
+                pass
+        workDays[str(i)] = kolWorkDays
+        fullInfoDays[str(i)] = {}
+        fullInfoDays[str(i)]['RB'] = kolRBDays
+        fullInfoDays[str(i)]['RF'] = kolRFDays
+        fullInfoDays[str(i)]['REF'] = kolREFDays
+        fullInfoDays[str(i)]['ADR'] = kolADRDays
+        fullInfoDays[str(i)]['Half'] = kolHalfDays
+        fullInfoDays[str(i)]['Money'] = kolRBDays * Costs['RB'] + kolRFDays * Costs['RF'] + kolREFDays * Costs['REF'] \
+                                        + kolADRDays * Costs['ADR'] + kolHalfDays * Costs['Half']
+
+    inraceDay = []
+    for dat in dateweek:
+        kolinrace = 0
+        for i in range(1, len(drivers)):
+            try:
+                if drivers[str(i)]['state'][str(dat)] != 0:
+                    kolinrace += 1
+            except:
+                pass
+        inraceDay.append(kolinrace)
+    allkolrace = 0
+    for race in inraceDay:
+        allkolrace += race
+
+    kolRBDays = 0
+    kolRFDays = 0
+    kolREFDays = 0
+    kolADRDays = 0
+    kolHalfDays = 0
+    allMoney = 0
+    for id in fullInfoDays:
+        kolRBDays += fullInfoDays[id]['RB']
+        kolRFDays += fullInfoDays[id]['RF']
+        kolREFDays += fullInfoDays[id]['REF']
+        kolADRDays += fullInfoDays[id]['ADR']
+        kolHalfDays += fullInfoDays[id]['Half']
+        allMoney += fullInfoDays[id]['Money']
+    inraceDay.append(kolRBDays)
+    inraceDay.append(kolRFDays)
+    inraceDay.append(kolREFDays)
+    inraceDay.append(kolADRDays)
+    inraceDay.append(kolHalfDays)
+    inraceDay.append(allMoney)
+
+
+    return render_template('Archive.html', drivers=drivers, dateweek=dateweek, inraceDay=inraceDay,
+                           form=ChoiceForm(choice0=0, choice1=1, choice3=3, choice4=4, choice2=2, choice5=5,
+                                           monthchoice=month, yearch=year),
+                           workDays=workDays, dateweekname=dateweekname, fullInfoDays=fullInfoDays,
+                           monthchoosed=month, yearchoosed=year, costs=Costs, allkolrace=allkolrace,
+                           sortchoosed = sort)
+
+
+@app.route('/archive')
+@login_required
+def archive():
+    try:
+        month = request.args['month']
+        year = request.args['year']
+    except:
+        if datetime.now().month < 10:
+            month = f'0{datetime.now().month}'
+        else:
+            month = f'{datetime.now().month}'
+        year = str(datetime.now().year)
+    try:
+        sort = request.args['sort']
+    except:
+        sort = 1
+
+    return archiveInit(month, year, sort)
+
+@app.route('/anotherDateArch', methods=['GET', 'POST'])
+def anotherDateArch():
+    month = request.form['monthch']
+    year = request.form['yearch']
+
+    sortch = request.form['sortchoosed']
+    if int(month) == datetime.now().month and int(year) == datetime.now().year:
+        if sortch == '1':
+            return redirect(url_for('archive'))
+        else:
+            return redirect(url_for('archive', sort=sortch))
+    else:
+        if sortch == '1':
+            return redirect(url_for('archive', month=month, year=year))
+        else:
+            return redirect(url_for('archive', month=month, year=year, sort=sortch))
+
+
 
