@@ -27,6 +27,22 @@
         location.reload();
     }, 300000);
   </script>
+  <style>
+    tr.changeable:hover > td {
+    background: #ffff00 !important;
+    color: #000000 !important
+   }
+   tr.changeable:hover > td > form > button {
+    background: #ffff00 !important;
+   }
+   tr.changeable:hover > td > form > select {
+    background: #ffff00 !important;
+    border-color: #ffff00 !important;
+   }
+   tr.changeable:hover > td > form > input {
+    background: #ffff00 !important;
+   }
+  </style>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Главная">
     <meta property="og:type" content="website">
@@ -101,7 +117,7 @@
             <tbody class="u-table-alt-grey-5 u-table-body">
             {% for dr in drivers %}
             {% if drivers[dr]['Name'] %}
-              <tr style="height: 30px;">
+              <tr style="height: 30px;" class="changeable">
                 <td class="u-border-1 u-border-grey-30 u-table-cell">
                   <form action="delUser", method="post">
                     <input type="hidden" name="monthchoosed" value="{{ monthchoosed }}">
