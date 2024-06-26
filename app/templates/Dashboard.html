@@ -57,12 +57,11 @@
       </div></header>
     <section class="u-align-center u-clearfix u-section-1" id="sec-962d">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h3 class="u-text  u-text-default u-text-1" style="margin: 20px">Добро пожаловать, {{ current_user.username }}!</h3>
         <table class="u-table-entity u-table-entity-1">
           <form action="anotherDate", method="post">
-            <input type="hidden" name="sortchoosed" value="{{ sortchoosed }}">
-            <tr>
-              <td>
+            <tr style="height: 100%; width: 100%">
+              <td style="width: 40%"><h5 class="u-text u-text-default u-text-1">Добро пожаловать, {{ current_user.username }}!</h5></td>
+              <td style="width: 30%">
                 {{ form.monthchoice(**{"onchange":"this.form.submit()", "style":"height: 40px; width: 100%; font-size: 22px;"}) }}
               </td>
               <td style="align: left;">
