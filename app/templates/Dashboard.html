@@ -219,6 +219,22 @@
             {% endif %}
             {% endfor %}
             </tbody>
+            <tr style="height: 21px; background: #000000; color: #ffffff">
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;"></th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">№</th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">Телефон</th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">ФИО</th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center; ">Раб.дни</th>
+                {% for day in dateweekname %}
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">{{ day }} </th>
+                {% endfor %}
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">РБ</th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">РФ</th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">РЭФ</th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">ADR</th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">0,5</th>
+                <th class="u-border-1 u-border-black u-table-cell" style = "text-align: center;">Зарплата</th>
+              </tr>
             <tr>
               <td colspan="5" class="u-border-1 u-border-grey-30 u-table-cell u-grey-50 u-table-cell u-table-cell-5" style = "text-align: center;">Всего машин в рейсах/зп:</td>
               <td class="u-border-1 u-border-grey-30 u-table-cell" style = "text-align: center;">{{ allkolrace }}</td>
