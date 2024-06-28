@@ -66,12 +66,12 @@ def login():
     return render_template('Главная.html', form=form)
 
 class ChoiceForm(FlaskForm):
-    choice0 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
-    choice1 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
-    choice2 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
-    choice4 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
-    choice5 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
-    choice3 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЭФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice0 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЕФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice1 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЕФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice2 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЕФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice4 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЕФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice5 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЕФ'), ('4', 'ADR'), ('5', '0,5')])
+    choice3 = SelectField(name='choiceee',choices=[('0', ' '), ('1', 'РБ'), ('2', 'РФ'), ('3', 'РЕФ'), ('4', 'ADR'), ('5', '0,5')])
 
     nameInp = StringField(name='nameInput')
     telInp = StringField(name='telInput')
